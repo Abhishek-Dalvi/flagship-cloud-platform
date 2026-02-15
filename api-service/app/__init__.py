@@ -11,3 +11,5 @@ def create_app():
     app.register_blueprint(tasks_bp)
 
     return app
+
+app = create_app()
