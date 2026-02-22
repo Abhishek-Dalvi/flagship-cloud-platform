@@ -1,9 +1,9 @@
 import os
+from app.logging_config import setup_logging
 from flask import Flask
 from app.routes.health import health_bp
 from app.routes.tasks import tasks_bp
 from app.config import config_map
-
 
 
 def create_app():
@@ -17,6 +17,7 @@ def create_app():
     app.register_blueprint(health_bp)
     app.register_blueprint(tasks_bp)
     app.config.from_object(ConfigClass)  # Load config based on environment variable
+    setup_logging(app.config["LOG_LEVEL"])  # Set up logging with the configured log level
     return app
 
 app = create_app()
